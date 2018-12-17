@@ -1,6 +1,6 @@
 import { verify } from 'jsonwebtoken'
 
-export const APP_SECRET = 'appsecret321'
+export const APP_SECRET = 'secret';
 
 interface Token {
   userId: string
