@@ -17,5 +17,5 @@ type AuthPayload {
 type User {
   id: ID!
   email: String!
-  username: String
+  username: String!
 }

@@ -3,7 +3,8 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "generate": "graphqlgen"
+    "generate": "prisma generate && graphqlgen",
+    "deploy": "prisma deploy && yarn generate"
   },
   "dependencies": {
     "bcrypt": "3.0.2",
