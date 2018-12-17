@@ -1,6 +1,6 @@
 # Specifies the HTTP endpoint of your Prisma API.
 #endpoint: ''
-endpoint: https://internal.fivein.ch/dev
+endpoint: https://internal.fivein.ch/fivein-api/dev
 
 # Defines your models, each model is mapped to the database as a table.
 datamodel: datamodel.graphql
