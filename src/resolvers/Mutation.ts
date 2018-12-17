@@ -5,10 +5,10 @@ import { APP_SECRET, getUserId } from '../utils'
 
 export const Mutation: MutationResolvers.Type = {
   ...MutationResolvers.defaultResolvers,
-  signup: async (parent, { name, email, password }, context) => {
+  signup: async (parent, { username, email, password }, context) => {
     const hashedPassword = await hash(password, 10);
     const user = await context.prisma.createUser({
-      name,
+      username,
       email,
       password: hashedPassword,
     });
