@@ -3,8 +3,8 @@ type Query {
 }
 
 type Mutation {
-    signup(email: String! password: String! username: String!): AuthPayload!
-    login(email: String! password: String!): AuthPayload!
+    signup(username: String! email: String! password: String!): AuthPayload!
+    login(usernameOrEmail: String! password: String!): AuthPayload!
 }
 
 type AuthPayload {
