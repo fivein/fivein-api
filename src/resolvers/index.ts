@@ -12,4 +12,4 @@ export const resolvers: Resolvers = {
   Post,
   Mutation,
   AuthPayload,
-}
+};

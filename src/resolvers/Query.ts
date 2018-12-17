@@ -5,7 +5,7 @@ export const Query: QueryResolvers.Type = {
   ...QueryResolvers.defaultResolvers,
 
   me: (parent, args, context) => {
-    const userId = getUserId(context)
+    const userId = getUserId(context);
     return context.prisma.user({ id: userId })
   },
   feed: (parent, args, context) => {
@@ -28,4 +28,4 @@ export const Query: QueryResolvers.Type = {
   post: (parent, { id }, context) => {
     return context.prisma.post({ id })
   },
-}
+};
