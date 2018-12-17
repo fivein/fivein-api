@@ -31,21 +31,4 @@ export const Mutation: MutationResolvers.Type = {
       user,
     }
   },
-  createDraft: async (parent, { title, content }, context) => {
-    const userId = getUserId(context)
-    return context.prisma.createPost({
-      title,
-      content,
-      author: { connect: { id: userId } },
-    })
-  },
-  deletePost: async (parent, { id }, context) => {
-    return context.prisma.deletePost({ id })
-  },
-  publish: async (parent, { id }, context) => {
-    return context.prisma.updatePost({
-      where: { id },
-      data: { published: true },
-    })
-  },
 };
