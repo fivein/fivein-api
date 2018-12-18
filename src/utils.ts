@@ -22,7 +22,7 @@ export async function getUserId(ctx: Context): Promise<string | null> {
   const token = Authorization.replace('Bearer ', '');
   const promisifiedVerify = promisify(verify);
   const decoded = await promisifiedVerify(token, APP_SECRET).catch(() => {});
-  return decoded ? (decoded as Token).userId : null;
+  return decoded && (decoded as Token).userId;
 }
 
 export async function getUser(ctx: Context): Promise<User> {
