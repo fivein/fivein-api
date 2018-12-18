@@ -2,8 +2,8 @@ import { rule, shield } from 'graphql-shield'
 import { getUserId } from '../utils'
 
 const rules = {
-  isAuthenticatedUser: rule()((parent, args, context) => {
-    const userId = getUserId(context);
+  isAuthenticatedUser: rule()(async (parent, args, context) => {
+    const userId = await getUserId(context);
     return userId != null;
   }),
 };

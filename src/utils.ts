@@ -1,5 +1,6 @@
-import { verify } from 'jsonwebtoken'
-import { Prisma, User } from "./generated/prisma-client";
+import { verify, VerifyErrors } from 'jsonwebtoken'
+import { Prisma, User } from './generated/prisma-client';
+import { promisify } from 'util';
 
 export const APP_SECRET = 'secret';
 
@@ -12,20 +13,20 @@ interface Context {
   request: any
 }
 
-export function getUserId(ctx: Context): string | null {
+export async function getUserId(ctx: Context): Promise<string | null> {
   const Authorization = ctx.request.get('Authorization');
-  if (Authorization) {
-    const token = Authorization.replace('Bearer ', '');
-    try {
-      const verifiedToken = verify(token, APP_SECRET) as Token;
-      return verifiedToken.userId;
-    } catch (err) { }
+
+  if (!Authorization)
     return null;
-  }
+
+  const token = Authorization.replace('Bearer ', '');
+  const promisifiedVerify = promisify(verify);
+  const decoded = await promisifiedVerify(token, APP_SECRET).catch(() => {});
+  return decoded ? (decoded as Token).userId : null;
 }
 
 export async function getUser(ctx: Context): Promise<User> {
-  const userId = getUserId(ctx);
+  const userId = await getUserId(ctx);
   if (userId == null) {
     return null;
   }
