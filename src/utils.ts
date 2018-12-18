@@ -19,8 +19,7 @@ export function getUserId(ctx: Context): string | null {
     try {
       const verifiedToken = verify(token, APP_SECRET) as Token;
       return verifiedToken.userId;
-    } catch (err) {
-    }
+    } catch (err) { }
     return null;
   }
 }
