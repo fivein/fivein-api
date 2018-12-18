@@ -6,6 +6,7 @@ export const Query: QueryResolvers.Type = {
 
   me: (parent, args, context) => {
     const userId = getUserId(context);
+    console.log(userId);
     return context.prisma.user({ id: userId })
   },
 };
