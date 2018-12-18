@@ -1,8 +1,8 @@
 import { MutationResolvers } from '../generated/graphqlgen'
 import { hash, compare } from 'bcrypt'
 import { sign } from 'jsonwebtoken'
-import { APP_SECRET } from '../utils'
-import { User } from "../generated/prisma-client";
+import { APP_SECRET, getUser } from '../utils'
+import { User, User } from "../generated/prisma-client";
 
 export const Mutation: MutationResolvers.Type = {
   ...MutationResolvers.defaultResolvers,
@@ -16,7 +16,7 @@ export const Mutation: MutationResolvers.Type = {
     return {
       token: sign({ userId: user.id }, APP_SECRET),
       user,
-    }
+    };
   },
   login: async (parent, { usernameOrEmail, password }, ctx) => {
     const userFromEmail: User = await ctx.prisma.user({ email: usernameOrEmail });
@@ -35,9 +35,13 @@ export const Mutation: MutationResolvers.Type = {
     return {
       token: sign({ userId: user.id }, APP_SECRET),
       user,
-    }
+    };
   },
-  renew: (parent, args, ctx) => {
-    throw new Error("Resolver not implemented");
-  }
+  renew: async (parent, args, ctx) => {
+    const user: User = await getUser(ctx);
+    return {
+      token: sign({ userId: user.id }, APP_SECRET),
+      user,
+    };
+  },
 };

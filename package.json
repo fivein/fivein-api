@@ -1,5 +1,5 @@
 {
-  "name": "graphql-auth",
+  "name": "fivein-api",
   "license": "MIT",
   "scripts": {
     "start": "ts-node src/index.ts",
