@@ -27,8 +27,5 @@ export async function getUserId(ctx: Context): Promise<string | null> {
 
 export async function getUser(ctx: Context): Promise<User> {
   const userId = await getUserId(ctx);
-  if (userId == null) {
-    return null;
-  }
-  return await ctx.prisma.user({ id: userId });
+  return userId && await ctx.prisma.user({ id: userId });
 }
