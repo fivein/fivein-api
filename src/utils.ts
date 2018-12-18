@@ -1,17 +1,9 @@
-import { verify, VerifyErrors } from 'jsonwebtoken'
-import { Prisma, User } from './generated/prisma-client';
 import { promisify } from 'util';
+import { Context, Token } from "./types";
+import { User } from './generated/prisma-client';
+import { verify } from 'jsonwebtoken'
 
 export const APP_SECRET = 'secret';
-
-interface Token {
-  userId: string
-}
-
-interface Context {
-  prisma: Prisma;
-  request: any
-}
 
 export async function getUserId(ctx: Context): Promise<string | null> {
   const Authorization = ctx.request.get('Authorization');

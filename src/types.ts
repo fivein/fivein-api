@@ -9,3 +9,7 @@ export interface AuthPayload {
   token: string
   user: User
 }
+
+export interface Token {
+  userId: string
+}
