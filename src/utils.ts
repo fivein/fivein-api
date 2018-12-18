@@ -24,7 +24,7 @@ export function getUserId(ctx: Context): string | null {
   }
 }
 
-export async function getUser(ctx: Context): User {
+export async function getUser(ctx: Context): Promise<User> {
   const userId = getUserId(ctx);
   if (userId == null) {
     return null;
