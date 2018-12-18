@@ -2,7 +2,7 @@ import { MutationResolvers } from '../generated/graphqlgen'
 import { hash, compare } from 'bcrypt'
 import { sign } from 'jsonwebtoken'
 import { APP_SECRET, getUser } from '../utils'
-import { User, User } from "../generated/prisma-client";
+import { User } from "../generated/prisma-client";
 
 export const Mutation: MutationResolvers.Type = {
   ...MutationResolvers.defaultResolvers,
