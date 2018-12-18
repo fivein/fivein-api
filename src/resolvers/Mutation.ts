@@ -1,7 +1,7 @@
 import { MutationResolvers } from '../generated/graphqlgen'
 import { hash, compare } from 'bcrypt'
 import { sign } from 'jsonwebtoken'
-import { APP_SECRET, getUserId } from '../utils'
+import { APP_SECRET } from '../utils'
 import { User } from "../generated/prisma-client";
 
 export const Mutation: MutationResolvers.Type = {
@@ -37,4 +37,7 @@ export const Mutation: MutationResolvers.Type = {
       user,
     }
   },
+  renew: (parent, args, ctx) => {
+    throw new Error("Resolver not implemented");
+  }
 };
