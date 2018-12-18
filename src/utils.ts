@@ -1,6 +1,6 @@
-import { promisify } from 'util';
 import { Context, Token } from "./types";
 import { User } from './generated/prisma-client';
+import { promisify } from 'util';
 import { verify } from 'jsonwebtoken'
 
 export const APP_SECRET = 'secret';
